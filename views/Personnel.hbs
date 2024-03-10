@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personnel</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/main.css'>
+</head>
+<body>
+    <header>
+        <h1>Personnel</h1>
+    </header>
+    <nav class="global" aria-label="Main navigation">
+        <a href="/">Home Page</a>
+        <a href="/MilitaryBranches">Military Branches</a>
+        <a href="/Bases">Bases</a>
+        <a href="/Munitions">Munitions</a>
+        <a href="/Personnel">Personnel</a>
+        <a href="/MunitionsOrders">Munitions Orders</a>
+        <a href="/MunitionTransactions">Munition Transactions</a>
+        <a href="/BaseMunitions">Base Munitions</a>
+        <a href="/PersonnelMunitions">Personnel Munitions</a>
+    </nav>
+    <main>
+        <section>
+            <h2>Browse Personnel</h2>
+            <table id="Personnel-table">
+                <thead>
+                    <tr>
+                        {{#each data.[0]}}
+                        <th>
+                            {{@key}}
+                        </th>
+                        {{/each}}
+                        <th>delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each data}}
+                    <tr data-value={{this.personnelId}}>
+                        <td>{{this.personnelId}}</td>
+                        <td>{{this.name}}</td>
+                        <td>{{this.rank}}</td>
+                        <td>{{this.role}}</td>
+                        <td>{{this.baseId}}</td>
+                        <td><button onclick="deletePersonnel({{this.personnelId}})">Delete</button></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <script src="./js/delete_personnel.js"></script>
+        </section>
+        <section>
+            <h2>Add New Personnel</h2>
+            <p>Enter new personnel information and click "Submit" to add to the database.</p>
+            <form id="add-personnel-form" method="POST" action="/add-personnel-form">
+                <label for="input-name">Name: </label>
+                <input type="text" name="input-name" id="input-name">
+
+                <label for="input-rank">Rank: </label>
+                <input type="text" name="input-rank" id="input-rank">
+
+                <label for="input-role">Role: </label>
+                <input type="text" name="input-role" id="input-role">
+
+                <label for="input-baseId">Base ID: </label>
+                <input type="number" name="input-baseId" id="input-baseId">
+                
+                <br></br>
+                <input type="submit"> 
+            </form>
+        </section>
+
+        <section>
+            <h2>Update Personnel Information</h2>
+            <p>To update personnel information, please fill out the form below:</p>
+            <form id="update-personnel-form-ajax">
+                <label for="input-personnelId">Personnel ID: </label>
+                <select name="input-personnelId" id="personnel-select">
+                    <option value="">Select Branch</option>
+                    {{#each data}}
+                    <option value="{{this.personnelId}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+
+                <label for="input-name">Name: </label>
+                <input type="text" name="input-name" id="input-name-update">
+                
+                <label for="input-rank">Rank: </label>
+                <input type="text" name="input-rank" id="input-rank-update">
+
+                <label for="input-role">Role: </label>
+                <input type="text" name="input-role" id="input-role-update">
+
+                <label for="input-baseId">Base ID: </label>
+                <input type="number" name="input-baseId" id="input-baseId-update">
+
+                <input type="submit">
+            </form>
+            <script src="./js/update_personnel.js"></script>
+        </section>
+
+    </main>
+    <footer>
+        <p>&copy; 2024 Military Munitions Database</p>
+    </footer>
+</body>
+</html>

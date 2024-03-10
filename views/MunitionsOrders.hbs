@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Munitions Orders</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/main.css'>
+</head>
+<body>
+    <header>
+        <h1>Munitions Orders</h1>
+    </header>
+    <nav class="global" aria-label="Main navigation">
+        <a href="/">Home Page</a>
+        <a href="/MilitaryBranches">Military Branches</a>
+        <a href="/Bases">Bases</a>
+        <a href="/Munitions">Munitions</a>
+        <a href="/Personnel">Personnel</a>
+        <a href="/MunitionsOrders">Munitions Orders</a>
+        <a href="/MunitionTransactions">Munition Transactions</a>
+        <a href="/BaseMunitions">Base Munitions</a>
+        <a href="/PersonnelMunitions">Personnel Munitions</a>
+    </nav>
+    
+    <main>
+        <section>
+            <h2>Browse Munitions Orders</h2>
+            <table>
+                <!-- Header section -->
+                <thead>
+                    <!-- For just the first row, we print each key of the row object as a header cell so we know what each column means when the page renders -->
+                    <tr>
+                        {{#each data.[0]}}
+                        <th>{{@key}}</th>
+                        {{/each}}
+                    </tr>
+                </thead>
+                <!-- Body section -->
+                <tbody>
+                    <!-- For each row, dynamically print each column's data -->
+                    {{#each data}}
+                    <tr>
+                        <td>{{this.orderId}}</td>
+                        <td>{{this.dateOrdered}}</td>
+                        <td>{{this.quantity}}</td>
+                        <td>{{this.munitionId}}</td>
+                        <td>{{this.baseId}}</td>
+                        <!-- Add any action buttons if needed -->
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h2>Add Munitions Order</h2>
+            <form id="addMunitionsOrderForm" action="/add-munitions-order" method="post">
+                <input type="date" id="dateOrdered" name="dateOrdered" required>
+                <input type="number" id="orderQuantity" name="quantity" placeholder="Quantity" required>
+                <input type="number" id="munitionId" name="munitionId" placeholder="Munition ID" required>
+                <input type="number" id="baseIdOrder" name="baseId" placeholder="Base ID" required>
+                <input type="submit" value="Add Order">
+            </form>
+        </section>
+        <section>
+            <h2>Update Munitions Order</h2>
+            <form id="updateMunitionsOrderForm" action="/update-munitions-order" method="post">
+                <input type="hidden" id="updateOrderId" name="orderId">
+                <input type="date" id="updateDateOrdered" name="dateOrdered" required>
+                <input type="number" id="updateOrderQuantity" name="quantity" placeholder="Quantity" required>
+                <input type="number" id="updateMunitionId" name="munitionId" placeholder="Munition ID" required>
+                <input type="number" id="updateBaseIdOrder" name="baseId" placeholder="Base ID" required>
+                <input type="submit" value="Update Order">
+            </form>
+        </section>
+        <section>
+            <h2>Delete Munitions Order</h2>
+            <form id="deleteMunitionsOrderForm" action="/delete-munitions-order" method="post">
+                <input type="hidden" id="deleteOrderId" name="orderId">
+                <label for="deleteOrderDetails">Confirm deletion of this order:</label>
+                <input type="submit" value="Delete Order">
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Military Munitions Database</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personnel Munitions Management</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/main.css'>
+    <script src='/js/app.js' defer></script>
+</head>
+<body>
+    <header>
+        <h1>Personnel Munitions Management</h1>
+    </header>
+    <nav class="global" aria-label="Main navigation">
+        <a href="/">Home Page</a>
+        <a href="/MilitaryBranches">Military Branches</a>
+        <a href="/Bases">Bases</a>
+        <a href="/Munitions">Munitions</a>
+        <a href="/Personnel">Personnel</a>
+        <a href="/MunitionsOrders">Munitions Orders</a>
+        <a href="/MunitionTransactions">Munition Transactions</a>
+        <a href="/BaseMunitions">Base Munitions</a>
+        <a href="/PersonnelMunitions">Personnel Munitions</a>
+    </nav>
+    <main>
+        <section>
+            <h2>Filter Personnel Munitions</h2>
+            <form id="filterPersonnelMunitionForm">
+                <label for="personnelIdFilter">Filter by Personnel ID:</label>
+                <input type="number" id="personnelIdFilter" name="personnelIdFilter" placeholder="Enter Personnel ID">
+                <input type="submit" value="Apply Filter">
+            </form>
+        </section>
+        <section>
+            <h2>Browse Current Munition Assignments</h2>
+            <table>
+                <!-- Header section -->
+                <thead>
+                    <!-- For just the first row, we print each key of the row object as a header cell so we know what each column means when the page renders -->
+                    <tr>
+                        {{#each data.[0]}}
+                        <th>{{@key}}</th>
+                        {{/each}}
+                    </tr>
+                </thead>
+                <!-- Body section -->
+                <tbody>
+                    <!-- For each row, print personnelId, munitionId, and responsibilityType -->
+                    {{#each data}}
+                    <tr>
+                        <td>{{this.personnelId}}</td>
+                        <td>{{this.munitionId}}</td>
+                        <td>{{this.responsibilityType}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h2>Assign Munition to Personnel</h2>
+            <form id="assignMunitionForm" action="/assign-munition" method="post">
+                <label for="personnelId">Personnel ID:</label>
+                <input type="number" id="personnelId" name="personnelId" required>
+                <label for="munitionId">Munition ID:</label>
+                <input type="number" id="munitionId" name="munitionId" required>
+                <label for="responsibility">Responsibility:</label>
+                <input type="text" id="responsibility" name="responsibility">
+                <input type="submit" value="Assign Munition">
+            </form>
+        </section>
+        <section>
+            <h2>Update Munition Assignment</h2>
+            <form id="updateAssignmentForm" action="/update-munition-assignment" method="post">
+                <label for="updatePersonnelId">Personnel ID:</label>
+                <input type="number" id="updatePersonnelId" name="personnelId" required>
+                <label for="updateMunitionId">Munition ID:</label>
+                <input type="number" id="updateMunitionId" name="munitionId" required>
+                <label for="updateResponsibility">New Responsibility:</label>
+                <input type="text" id="updateResponsibility" name="responsibility">
+                <input type="submit" value="Update Assignment">
+            </form>
+        </section>
+        <section>
+            <h2>Remove Munition Assignment</h2>
+            <form id="removeAssignmentForm" action="/remove-munition-assignment" method="post">
+                <label for="removePersonnelId">Personnel ID:</label>
+                <input type="number" id="removePersonnelId" name="personnelId" required>
+                <label for="removeMunitionId">Munition ID:</label>
+                <input type="number" id="removeMunitionId" name="munitionId" required>
+                <input type="submit" value="Remove Assignment">
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Military Munitions Database</p>
+    </footer>
+</body>
+</html>

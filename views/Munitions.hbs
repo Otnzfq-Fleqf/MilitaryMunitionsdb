@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Munitions Inventory Tracking Database</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/main.css'>
+    <script src='/js/app.js' defer></script>
+</head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<body>
+    <header>
+        <h1>Munitions</h1>
+    </header>
+    <nav class="global" aria-label="Main navigation">
+        <a href="/">Home Page</a>
+        <a href="/MilitaryBranches">Military Branches</a>
+        <a href="/Bases">Bases</a>
+        <a href="/Munitions">Munitions</a>
+        <a href="/Personnel">Personnel</a>
+        <a href="/MunitionsOrders">Munitions Orders</a>
+        <a href="/MunitionTransactions">Munition Transactions</a>
+        <a href="/BaseMunitions">Base Munitions</a>
+        <a href="/PersonnelMunitions">Personnel Munitions</a>
+    </nav>    
+    <main>
+        <section>
+        <h2>Filter Munitions by type</h2>
+        <form id="filter-munitions-form" method="GET" action="/Munitions"> 
+            <label for="type-filter">Munition Type: </label>
+            <select name="type-filter" id="type-filter">
+            <option value="">All Types</option>
+            {{#each MunitionTypes}} 
+                <option value="{{this}}">{{this}}</option>
+            {{/each}}
+            </select>
+            <br></br>
+            <input type="submit" value="Filter">
+            <input type="reset" value="Reset" onclick="clearFilter()">
+        </form>
+        </section>
+
+        <script>
+        function clearFilter() {
+            window.location.href = '/Munitions'; // Redirect to the Munitions page without any parameters
+        }
+        </script>
+        <section>
+            <h2>Browse Munitions</h2>
+            <table id="Munitions-table">
+            <thead>
+                <tr>
+                {{#each data.[0]}}
+                <th>
+                    {{@key}}
+                </th>
+                {{/each}}
+                <th>delete</th> {{! -- Add a column for the delete button--}}
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr data-value={{this.munitionId}}> 
+                <td>{{this.munitionId}}</td>
+                <td>{{this.type}}</td>
+                <td>{{this.specs}}</td>
+                <td>{{this.quantity}}</td>
+                <td><button onclick="deleteMunition({{this.munitionId}})">Delete</button></td> 
+                </tr>
+                {{/each}}
+            </tbody>
+            </table>
+            <script src="./js/delete_munitions.js"></script> 
+        </section>
+        <section>
+            <h2>Adding New Munitions</h2>
+            <p>To add a new munition, please enter the information below and click 'Submit'!</p>
+            <form id="add-munitions-form-ajax">
+                <label for="input-type">Munition Type: </label>
+                <input type="text" name="input-type" id="input-type">
+                
+                <label for="input-specs">Specs: </label>
+                <input type="text" name="input-specs" id="input-specs">
+
+                <label for="input-quantity">Quantity: </label>
+                <input type="number" name="input-quantity" id="input-quantity">
+
+                <input type="submit">
+            </form>
+            <script src="./js/add_munitions.js"></script>
+        </section>
+        <section>
+            <h2>Update Munition Details</h2>
+            <p>Select the munitionId then write in the updated data:</p>
+            <form id="update-munitions-form-ajax">
+                <label for="input-munitionId">Select by Munition ID: </label>
+                <select name="input-munitionId" id="munitionId-select">
+                    <option value="">Select Munitions</option>
+                    {{#each data}}
+                    <option value="{{this.munitionId}}">{{this.munitionId}}</option>
+                    {{/each}}
+                </select>
+
+                <label for="input-type">Munition Type: </label>
+                <input type="text" name="input-type" id="input-type-update">
+                
+                <label for="input-specs">Specs: </label>
+                <input type="text" name="input-specs" id="input-specs-update">
+
+                <label for="input-quantity">Quantity: </label>
+                <input type="number" name="input-quantity" id="input-quantity-update">
+
+                <input type="submit">
+            </form>
+            <script src="/js/update_munitions.js"></script>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Military Munitions Database</p>
+    </footer>
+</body>
+</html>

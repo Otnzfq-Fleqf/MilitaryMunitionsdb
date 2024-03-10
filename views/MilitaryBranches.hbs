@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Military Branches</title>
+    <!-- Correctly link to the main.css file in the public/css directory -->
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/main.css'>
+    <!-- Correctly link to the favicons in the public/favicons directory -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicons/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/favicons/site.webmanifest">
+</head>
+<body>
+    <header>
+        <h1>Military Branches</h1>
+    </header>
+    <nav class="global" aria-label="Main navigation">
+        <a href="/">Home Page</a>
+        <a href="/MilitaryBranches">Military Branches</a>
+        <a href="/Bases">Bases</a>
+        <a href="/Munitions">Munitions</a>
+        <a href="/Personnel">Personnel</a>
+        <a href="/MunitionsOrders">Munitions Orders</a>
+        <a href="/MunitionTransactions">Munition Transactions</a>
+        <a href="/BaseMunitions">Base Munitions</a>
+        <a href="/PersonnelMunitions">Personnel Munitions</a>
+    </nav>    
+    <main>
+        <section>
+            <h2>Browse Military Branches</h2>
+            <table id="branches-table">
+                {{!-- Header section --}}
+                <thead>
+                    {{!-- For just the first row, we print each key of the row object as a header cell --}}
+                    <tr>
+                        {{#each data.[0]}}
+                        <th>
+                            {{@key}}
+                        </th>
+                        {{/each}}
+                        <th>delete</th>
+                    </tr>
+                </thead>
+                {{!-- Body section --}}
+                <tbody>
+                    {{#each data}}
+                    <tr data-value={{this.branchId}}>
+                        <td>{{this.branchId}}</td>
+                        <td>{{this.name}}</td>
+                        <td><button onclick="deleteBranch({{this.branchId}})">Delete</button></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <script src="./js/delete_branch.js"></script> 
+        </section>
+        <section>
+        <h2>Add a New Military Branch</h2>
+        <p>Enter the new branch name below:</p>
+        <form id="add-branch-form" method="POST" action="/add-branch-form">
+            <label for="input-new-branch">Branch Name: </label>
+            <input type="text" name="input-new-branch" id="input-new-branch" required>
+            <input type="submit" value="Add Branch">
+        </form>
+        </section>
+        <section>
+            <h2>Update Military Branch</h2>
+            <p>To update a Military Branch, select it by id</p>
+            <form id="update-military-branch-form-ajax">
+                <label for="input-branchId">Branch ID: </label>
+                <select name="input-branchId" id="branch-select">
+                    <option value="">Select Personnel</option>
+                    {{#each data}}
+                    <option value="{{this.branchId}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+
+
+                <label for="input-name">Military Branch Name: </label>
+                <input type="text" name="input-name" id="input-name-update">
+
+                <input type="submit">
+            </form>
+            <script src="./js/update_militarybranch.js"></script>
+        </section> 
+    </main>
+    <footer>
+        <p>&copy; 2024 Military Munitions Database</p>
+    </footer>
+</body>
+</html>

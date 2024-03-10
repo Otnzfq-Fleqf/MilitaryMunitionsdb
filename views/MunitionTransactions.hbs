@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Munition Transactions</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/main.css'>
+    <script src='/js/app.js' defer></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png"> 
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicons/android-chrome-512x512.png"> 
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png"> 
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png"> 
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png"> 
+    <link rel="manifest" href="/favicons/site.webmanifest">
+</head>
+<body>
+    <header>
+        <h1>Munition Transactions</h1>
+    </header>
+    <nav class="global" aria-label="Main navigation">
+        <a href="/">Home Page</a>
+        <a href="/MilitaryBranches">Military Branches</a>
+        <a href="/Bases">Bases</a>
+        <a href="/Munitions">Munitions</a>
+        <a href="/Personnel">Personnel</a>
+        <a href="/MunitionsOrders">Munitions Orders</a>
+        <a href="/MunitionTransactions">Munition Transactions</a>
+        <a href="/BaseMunitions">Base Munitions</a>
+        <a href="/PersonnelMunitions">Personnel Munitions</a>
+    </nav>
+    <main>
+        <section>
+            <h2>Browse Munition Transactions</h2>
+            <table>
+                {{!-- Header section --}}
+                <thead>
+                    {{!-- For just the first row, we print each key of the row object as a header cell --}}
+                    <tr>
+                        {{#each data.[0]}}
+                        <th>{{@key}}</th>
+                        {{/each}}
+                    </tr>
+                </thead>
+                {{!-- Body section --}}
+                <tbody>
+                    {{!-- For each row, print the transactionId, date, type, quantity, munitionId, and baseId --}}
+                    {{#each data}}
+                    <tr>
+                        <td>{{this.transactionId}}</td>
+                        <td>{{this.date}}</td>
+                        <td>{{this.type}}</td>
+                        <td>{{this.quantity}}</td>
+                        <td>{{this.munitionId}}</td>
+                        <td>{{this.baseId}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h2>Add Munition Transaction</h2>
+            <form id="addMunitionTransactionForm" action="/add-munition-transaction" method="post">
+                <input type="date" id="transactionDate" name="date" required>
+                <input type="text" id="transactionType" name="type" placeholder="Transaction Type" required>
+                <input type="number" id="transactionQuantity" name="quantity" placeholder="Quantity" required>
+                <input type="number" id="transactionMunitionId" name="munitionId" placeholder="Munition ID" required>
+                <input type="number" id="transactionBaseId" name="baseId" placeholder="Base ID" required>
+                <input type="submit" value="Add Transaction">
+            </form>
+        </section>
+        <section>
+            <h2>Update Munition Transaction</h2>
+            <form id="updateMunitionTransactionForm" action="/update-munition-transaction" method="post">
+                <input type="hidden" id="updateTransactionId" name="transactionId">
+                <input type="date" id="updateTransactionDate" name="date" required>
+                <input type="text" id="updateTransactionType" name="type" placeholder="Transaction Type" required>
+                <input type="number" id="updateTransactionQuantity" name="quantity" placeholder="Quantity" required>
+                <input type="number" id="updateTransactionMunitionId" name="munitionId" placeholder="Munition ID" required>
+                <input type="number" id="updateTransactionBaseId" name="baseId" placeholder="Base ID" required>
+                <input type="submit" value="Update Transaction">
+            </form>
+        </section>
+        <section>
+            <h2>Delete Munition Transaction</h2>
+            <form id="deleteMunitionTransactionForm" action="/delete-munition-transaction" method="post">
+                <input type="hidden" id="deleteTransactionId" name="transactionId">
+                <label for="deleteTransactionDetails">Are you sure you want to delete this transaction?</label>
+                <input type="submit" value="Delete Transaction">
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Military Munitions Database</p>
+    </footer>
+</body>
+</html>

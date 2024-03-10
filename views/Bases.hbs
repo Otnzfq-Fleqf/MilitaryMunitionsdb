@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bases</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/main.css'>
+</head>
+<body>
+    <header>
+        <h1>Bases</h1>
+    </header>
+    <nav class="global" aria-label="Main navigation">
+        <a href="/">Home Page</a>
+        <a href="/MilitaryBranches">Military Branches</a>
+        <a href="/Bases">Bases</a>
+        <a href="/Munitions">Munitions</a>
+        <a href="/Personnel">Personnel</a>
+        <a href="/MunitionsOrders">Munitions Orders</a>
+        <a href="/MunitionTransactions">Munition Transactions</a>
+        <a href="/BaseMunitions">Base Munitions</a>
+        <a href="/PersonnelMunitions">Personnel Munitions</a>
+    </nav>    
+    <main>
+        <section>
+            <p>Contribute if you'd like! Add a base. (: </p>
+            <p>The UI (user interface) is dynamically connected to a live database. </p>
+            <h2>Filter Bases</h2>
+            <form id="filter-form" method="GET" action="/Bases"> 
+            <label for="branch-filter">Military Branch: </label>
+            <select name="branch-filter" id="branch-filter">
+                <option value="">All Branches</option>
+                {{#each MilitaryBranches}} 
+                <option value="{{this.branchId}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+            <br></br>
+            <input type="submit" value="Filter">
+            </form>
+
+            <h2>Browse Bases</h2>
+            <!-- Create a table for Bases -->
+            <table id="bases-table">
+                <thead>
+                    <tr>
+                        {{#each data.[0]}}
+                        <th>
+                            {{@key}}
+                        </th>
+                        {{/each}}
+                        <th>delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- For each row, print baseId, name, location, and branchId -->
+                    {{#each data}}
+                    <tr data-value={{this.baseId}}>
+                        <td>{{this.baseId}}</td>
+                        <td>{{this.name}}</td>
+                        <td>{{this.location}}</td>
+                        <td>{{this.branchId}}</td>
+                        <td><button onclick="deleteBase({{this.baseId}})">Delete</button></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <script src="./js/delete_base.js"></script>
+
+            <h2>Search Using a HTML Form</h2>
+            <p>Search by location using the field below.</p>
+            <form id="search-location-html" method='GET' action='/Bases'>
+                <label for="input-location">Search by location: </label>
+                <input type="text" name="location" id="input-location-html-search">
+                
+                <input type="submit">
+                <input type="reset" value="Reset" onclick="clearFilter()">
+            </form>
+        </section>
+        <script>
+        function clearFilter() {
+            window.location.href = '/Bases'; // Redirect to the Munitions page without any parameters
+        }
+        </script>
+
+        <section>
+            <h2>Adding a New Base</h2>
+            <p>To add a new base, please enter the information below and click 'Submit'!</p>
+            <form id="add-base-form" method="POST" action="/add-base-form">
+
+                <label for="input-name">Base Name: </label>
+                <input type="text" name="input-name" id="input-name">
+                
+                <label for="input-location">Location: </label>
+                <input type="text" name="input-location" id="input-location">
+
+                <label for="input-branchId">Branch ID: </label>
+                <select name="input-branchId" id="input-branchId">
+                    <option value="">Select a Branch</option>
+                    {{#each MilitaryBranches}} 
+                    <option value="{{this.branchId}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+
+                <br></br>
+                <input type="submit">
+            </form>
+        </section>
+
+        <section>
+            <h2>Updating a Base's Location</h2>
+            <p>To update a base's location, select the base from the first dropdown menu and enter its new location in the second field.</p>
+            <form id="update-base-form-ajax">
+                <label for="input-base-name">Base Name: </label>
+                <select name="input-base-name" id="base-select">
+                    <option value="">Select a Base</option>
+                    {{#each data}}
+                    <option value="{{this.baseId}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+
+                <label for="input-location">New Location: </label>
+                <input type="text" name="input-location" id="input-location-update">
+
+                <input type="submit">
+            </form>
+            <script src="./js/update_base.js"></script>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Military Munitions Database</p>
+    </footer>
+</body>
+</html>

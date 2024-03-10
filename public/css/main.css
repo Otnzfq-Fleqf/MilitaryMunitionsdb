@@ -1,0 +1,635 @@
+/* ===== MOBILE styles (reside at the top and are inherited by all devices) ===== */
+/* ===== See tablet, desktop, and print @media queries at the bottom. */
+
+/* ----- Imports ----- */
+/* @import 'node_modules/modern-normalize/modern-normalize.css';  npm install modern-normalize  Resets elements for browser consistency.  https://www.npmjs.com/package/modern-normalize */         
+/* @import "component1.css";   Component-specific stylesheets, if any.   */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Roboto:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+:root {
+        --lightest-green: #18D935; /* Lightest green */
+        --second-lightest-green: #1CA625; /* Second Lightest green */
+        --medium-green: #055902; /* Middle green */
+        --second-darkest-green: #034001; /* Second Darkest green */
+        --darkest-green: #022601; /* Darkest green */
+      
+        
+        --accent-color: #da8824e4; /* Accent/Contrasting Color*/
+      
+        
+        --transparent-color: rgba(55, 0, 255, 0.821); /* Transparency/opacity alpha channel */
+    }
+  
+  /* ----- Viewport ----- elements inherited by all remaining elements ----- */
+  body {
+    background-position: top left;
+    background-color:#18D935;
+    background-image: url('../img/6b8805bf7a4ef498ae5e009888b15b31.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family:'Oswald', sans-serif;
+    font-weight:400; 
+    margin: 20px;
+    padding: 7.5%;
+    max-width: 100%;
+    min-width: none;
+    max-height: 100%;
+    min-height: none;
+  }
+  
+  /* ----- Page layout blocks -----  */
+  header {
+    background-color: rgba(24, 217, 53, .9); /* Background color */
+    color:#034001; /* Text color */
+    font-family:'Oswald', sans-serif;
+    font-weight: 500;
+    margin: 20px; /* Margin for space */
+    padding: 10px; /* Padding for space */
+    border: 40px solid green; /* Add borders if desired */
+    width: auto; /* Width of box */
+    height: auto; /* Height of box */
+    /*height: auto;  Adjust the height to maintain the aspect ratio */
+    /*max-width: 95.14%;*/
+    /*min-width: none;*/
+    text-align:center;
+  }
+  main {
+    background-color: rgba(24, 217, 53, .9);
+    color: #034001; /* Text color */
+    margin: 20px;
+    padding: 12px;
+    border: 6px solid green;
+  }
+  section {
+    background-color: #055902;
+    color: #034001; /* Text color */
+    margin: 20px;
+    padding:2% 4%; /*Self note: 1st is top or and bottom. 2nd is right or and left. 3rd is bottom. 4th is left. */
+    border: 6px solid green;
+  }
+    article {
+        border-top: 5px solid #022601;;
+        border-bottom: 5px solid #022601;;
+        border-right: 5px solid #022601;;
+        border-left: 5px solid #022601;;
+        margin: 15px;
+        padding: 30px;
+    }
+        #webServers {background-color: #18D935;}
+        #frontendDesign {background-color:  #18D935;}
+        #optimizingImages {background-color: #18D935;}
+        #favicons {background-color: #18D935;}
+        #cascadingStylesheets {background-color: #18D935;}
+        #forms {background-color: #18D935;}
+        #express {background-color: #18D935;}
+  div {}
+  aside {}
+  footer {
+    background-color: rgba(24, 217, 53, .9);
+    color: #034001;
+    margin: 20px;
+    padding: 10px;
+    border: 6px solid green;
+  }
+  
+  /* ----- Anchors ----- Text links */
+  a {}
+  a:link {color: blue}
+  a:active {color: blue;}
+  a:visited {color: purple;}
+  a:hover {color: white;}
+  
+  /* ----- Navigation ----- Override text links for navigation only.  */
+  nav {
+    background-color: #18D935;
+    color: #034001;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #022601;
+    text-align: center;
+  }
+  nav a {
+    background-color:#022601;
+    border:2px solid #022601;
+    border-radius:5px 5px 0 0; 
+    color:white;
+    font-size:1.1em;
+    font-weight:bold;
+    margin-right:3px;
+    padding: 3px 20px 5px 20px;
+    text-decoration:none;
+    vertical-align: middle;
+  }
+  nav a:hover {
+    background-color:rgb(255, 255, 255);
+    color:#022601;
+  }
+  /* Global navigation block *//*
+
+    button {
+    background-color:  rgba(255, 255, 255, .9);
+    color: #022601;
+    padding: 10px 20px;
+    margin-top: 12px;
+    border-radius: 50px; 
+    border: 3px solid #18D935;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer; 
+    box-shadow: 0px 0px 5px 15px rgba(0, 0, 0, 0.75);
+  }
+  button:hover {
+    background-color: #022601;
+    color: #18D935;
+    box-shadow: 0px 0px 10px 8px rgba(23, 191, 48, .75);
+    cursor: pointer;
+
+
+  
+
+   */
+nav.global {
+  background-color: #18D935;
+  color: #022601;
+  margin: 20px;
+  padding: 10px;
+  border: 4px solid #022601;
+  text-align: center;
+  display: flex; /* Use flexbox to layout nav items */
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */  
+}
+
+nav.global a {
+  background-color:#18D935;
+  border:2px solid #022601;
+  border-radius:50px; 
+  color:#022601;
+  font: size 1.1em;
+  font-weight:bold;
+  margin: 5px; /* from 30  */
+  padding: 10px 20px; /* from 4px 125px 4px 125px  */
+  text-decoration:none;
+  vertical-align: middle;
+  transition: background-color; 0.2s ease-in-out, color 0.2s ease-in-out; 
+  box-shadow: 0px 0px 4px 10px #022601; /* Optional: Adjust or remove shadow as needed */
+}
+
+nav.global a:link {
+  background-color:  #18D935;
+  color:#022601;
+
+  transition: all 0.2s ease-in-out; 
+  box-shadow: 0px 0px 4px 10px #022601; /* Dark grey shadow */
+}  
+
+nav.global a:active {
+  background-color:rgb(0, 0, 255);
+  color:#022601
+}  
+
+nav.global a:visited {
+  background-color:rgb(128, 0, 128); /* If user has visited the link, the link appears purple. */
+  color:#022601;
+}  
+
+nav.global a:hover {
+  background-color: #022601;
+  color: #18D935;
+
+  box-shadow: 0px 0px 3px 6px rgba(255, 255, 255, 0.75); /* Can you please let the... light grey go here? It's a personal styling preference.  */
+  cursor: pointer; /* User moves mouse over button, cursor changes forms to indicate a link to click. */
+}  
+
+/* Local navigation block */
+
+nav.local {
+  background-color: #1CA625;
+  color: #034001;
+  margin: 2px auto; /* From 2px */
+  padding: 0px; /* From 10px */
+  border: 0px solid #022601;
+  text-align: center;
+  max-width: 1024px;
+  width: 100%;
+  min-width: 2px;
+  margin-left: auto;
+  margin-right: auto;
+/* flex-flow: 100%; this one has been taken out of the code */ 
+  display:flex; 
+  flex-wrap: wrap;
+  justify-content: center; /* Newly added */
+  align-items: center; /* Newly added */
+}
+
+nav.local a {
+  flex: 1;
+  width: 100%; /* Example width */
+  max-width: 250px;
+  min-width: 10px;
+  height: auto; 
+  border-radius: 0;
+  background-color:blue;
+  border:0px solid #022601;
+  color:#022601;
+  font-size: auto;
+  font-weight:bold;
+  margin: 5px; /* From 0px */
+  text-decoration:none;
+  vertical-align: middle;
+  padding: 5px 10px; /* Padding is a new add */
+  text-align: center; /* Text align is a new add */
+  box-shadow: 0px 0px 8px 11px rgba(23, 191, 48, .75); /* A new optional add */
+  white-space: nowrap; /* Prevent text from wrapping. Newly added. */
+  overflow: hidden; /* Hide overflow text. Newly added. */
+  text-overflow: ellipsis; /* Add ellipsis to overflow text. Newly added. */
+}
+
+nav.local a:link {
+  background-color:  #18D935;
+  color:#022601;
+
+  transition: all 0.2s ease-in-out; 
+  box-shadow: 0px 0px 0px 4px #022601; /* Dark grey shadow */
+}  
+
+nav.local a:active {
+  background-color:rgb(0, 0, 255);
+  color:#022601;
+}  
+
+nav.local a:visited {
+  background-color:rgb(128, 0, 128);
+  color:#022601;
+}  
+
+nav.local a:hover {
+  background-color: #022601;
+  color: #18D935;
+  /*box-shadow: 0px 0px 5px 11px rgba(23, 191, 48);*/
+  cursor: pointer;
+  box-shadow: 0px 0px 8px 11px rgba(23, 191, 48, .75);
+}  
+
+  /* ----- Typography ----- */
+  p {
+    color: #022601;
+  }
+  br {}
+
+  .lightgreen-text {
+    color: #18D935;
+  }
+  ol, ul, dl {}
+  li {}
+  dt {}
+  dd {}
+  
+  h1, h2, h3, h4, h5, h6 
+  {color: #000000;
+    font-family:'Oswald', sans-serif;
+    font-weight: 500;
+  }
+  h1 {/*font-size:300%;*/
+    font-size: 50px;
+    font-family: 'Oswald',sans-serif ;
+  }
+  h2 {font-size:200%;
+      font-family: 'Roboto',sans-serif;
+  }
+  
+  h3 {font-size:150%;
+      font-family: 'Roboto',sans-serif;
+  
+  } 
+  h4 {}
+  h5 {}
+  h6 {}
+  
+  abbr {}
+  acronym {}
+  address {}
+  blockquote {}
+  q {}
+  cite {}
+  em {}
+  hr {}
+  mark {}
+  s {}
+  span {}
+  strong {}
+  sub {}
+  sup {}
+  time {}
+  
+  /* ----- Coding or instructional typography ----- */
+  pre {}
+  code {}
+  kbd {}
+  samp {}
+  var {}
+  del {} 
+  ins {}
+  
+  /* ----- Table ----- */
+  table {border-collapse: collapse;
+         max-width: 99%;
+         margin: 0 auto 20px;
+         width: 100%; /* Adjust as needed */
+         table-layout: fixed; /* This helps enforce your width settings */
+         box-shadow: 0px 0px 10px 8px rgba(23, 191, 48, 1);
+  }
+  caption {
+    background-color:#18D935;  
+    border:3px solid #022601;  
+    color:#022601;
+    font-weight:bold;
+    padding:1% 0;
+    box-shadow: 
+    0 -12px 8px -3px #18D935, /* More pronounced top shadow */
+    -8px 0 6px -1px #18D935,   /* Subtler left shadow */
+    8px 0 6px -1px #18D935;    /* Subtler right shadow */
+  }
+  thead {}
+  tbody {}
+  tfoot {}
+  tr {border-right: 2px solid #022601;
+      border-left: 2px solid #022601;
+      border-bottom: 2px solid #022601;
+      padding:1%;
+      text-align:left;
+  }
+  th {border-bottom:2px solid #022601;
+      background-color:#1CA625;
+      /*padding:1%;*/
+      /*text-align:left;*/
+
+      
+      max-width: 120px; /* Or any other max-width as needed */
+      
+      word-break: break-word; /* To ensure words break and wrap onto the next line */
+      
+      overflow: hidden; /* Keeps the content contained within the cell */
+      
+      text-overflow: clip; /* Adds an ellipsis to signify clipped text */
+      
+      white-space: nowrap; /* Prevents wrapping of content within the cell */
+      
+      text-align: center; /* Centers the text */
+      
+      padding: 8px; /* Adjust the padding to manage space */
+  }
+  td {border:1px solid #1CA625;
+      background-color:#034001;
+      color:#18D935;
+      /*padding:1%;*/
+      /*text-align:left;*/
+
+      max-width: 120px; /* Or any other max-width as needed */
+
+      word-break: break-word; /* To ensure words break and wrap onto the next line */
+
+      overflow: hidden; /* Keeps the content contained within the cell */
+
+      text-overflow: clip; /* Adds an ellipsis to signify clipped text */
+      white-space: nowrap; /* Prevents wrapping of content within the cell */
+      text-align: center; /* Centers the text */
+      padding: 8px; /* Adjust the padding to manage space */
+  }
+  td:nth-child(1) {}
+  colgroup {}
+  data {}
+  datalist {}
+  
+  /* ----- Form ----- */
+  
+  form, button, select, input, textarea {
+    color: #022601;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    padding: 1%
+  }
+  fieldset {
+    border: 2px solid #18D935;
+    margin-bottom: 2%;
+    padding: 2%;
+  }
+  legend {
+    background-color: #1CA625;
+    color:#000000;
+    font-size:;
+    border: 4px solid #18D935;
+    padding: .5%;
+  }
+  
+  label {
+    color: #18D935;
+    display: block;
+  }
+  
+  input {
+    background-color: white;
+    border: 3px solid #18D925;
+    width: auto;
+  }
+
+  input:focus {
+    color: #022601;
+    border: 3px solid #18D925;
+    box-shadow: 0px 0px 8px 3px rgba(24, 217, 53, .85);
+  }
+
+  input[type="checkbox"]:hover {
+    cursor: pointer; /* or any other cursor style you prefer */
+    background-color: #022601;
+    box-shadow: 0px 0px 8px 3px rgba(24, 217, 53, .85);
+  }
+  
+  /* For radio buttons */
+  input[type="radio"]:hover {
+    cursor: pointer; /* or any other cursor style you prefer */
+    background-color: #022601;
+    box-shadow: 0px 0px 8px 3px rgba(24, 217, 53, .85);
+  }
+
+  textarea {
+    color: #022601;
+    border: 3px solid #18D925;
+    width: 100%; /* Make textarea responsive */
+    max-width: 400px; /* Maximum width can be set as needed */
+    height: 100px;
+    box-sizing: border-box; /* Include padding and border in the element's width */
+  }
+  textarea:focus {
+    color: #022601;
+    border: 3px solid #18D925;
+    box-shadow: 0px 0px 8px 3px rgba(24, 217, 53, .85);
+  }
+  form {}
+  button {
+    background-color:  rgba(255, 255, 255, .9) ;
+    color: #022601;
+    padding: 10px 20px;
+    margin-top: 12px;
+    border-radius: 50px; /* Large enough to make it look like a pill */
+    border: 3px solid #18D935;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer; /* Changes the cursor to a pointer to indicate it's clickable */
+    box-shadow: 0px 0px 5px 15px rgba(0, 0, 0, 0.75);
+  }
+  button:hover {
+    background-color: #022601;
+    color: #18D935;
+    box-shadow: 0px 0px 10px 8px rgba(23, 191, 48, .75);
+    cursor: pointer;
+
+  }
+  select {
+    color: black;
+    border: 3px solid #18D925;
+    width: 100%;
+    background-color: white;
+    /* box-sizing: border-box; Includs padding and border in the element's total width */
+  }
+  select:focus {
+    background-color: #022601;
+    color: #18D935;
+    cursor: pointer;
+  }
+  select:hover {
+    background-color: #022601;
+    color: #18D935;
+    cursor: pointer; 
+  }
+  optgroup {}
+  option {
+    
+  }
+  option:Hover {
+    background-color: #022601;
+    color: #18D935;
+    cursor: pointer; 
+  }
+  output #submit-form {    
+    
+    background-position: top left;
+    background-color:#18D935;
+    background-image: url('images/6b8805bf7a4ef498ae5e009888b15b31.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family:'Oswald', sans-serif;
+    font-weight:400; 
+    margin: 20px;
+    padding: 7.5%;
+    max-width: 100%;
+    min-width: none;
+    max-height: 100%;
+    min-height: none;
+
+  }
+  meter {}
+  progress {}
+  
+  /* ----- Media ----- */
+  figure {}
+  figcaption {}
+  figure img {}
+  svg {}
+  picture {}
+  source {}
+  iframe {}
+  video {}
+  audio {}
+  embed {}
+  object {}
+  
+  /* ----- Classes for alignment, positioning, widths, grids, embellishments, and animation -----  */
+  
+  /* Styles for the gallery section */
+  .gallery {
+    display: flex;
+    flex-wrap: wrap; /* Allows figures to wrap to the next line if needed */
+    gap: 10px; /* Adjusts the gap between figures */
+    margin: 0 auto; /* Centers the gallery within the body */
+    justify-content: center; /* Centers the items horizontally */
+  }
+  
+  .gallery figure {
+    flex: 5; /* Allows figures to grow equally within the flex container */
+    text-align: center; /* Center-aligns the content */
+    background-color:#055902 ; /* Background color */
+    padding: 40px 60px; /* PaDdInG 0 */
+    border: 1px solid #022601; /* boRdEr 1pX sOlID VlaCk */
+    color: white; /* Text color */
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+    margin: 10px; /* MArgin .75% */
+    border-radius: 0px; /* Add border radius for rounded corners */
+    width: auto; /* wIdth 320px */
+    min-width: 20%; 
+    max-width: 100%;
+
+    /* Adjust other styles (font-size, etc.) as needed */
+  }
+  
+  .gallery figure img {
+    max-width: 100%; /* Ensure images fit within their containers */
+    width: 100%; /* widTh 100% */
+    height: auto; /* Maintain aspect ratio for images */
+    margin: 0; 
+    padding: 0;
+    border-radius: 10px;
+
+}
+
+.gallery figcaption {
+    margin-top: 5px; /* Add margin space between image and caption */
+    font-size: 10px; /* Adjust the font size for captions */
+    font-size: 80%;
+    text-align: center;
+    display: block; /* Blawk */
+    padding: 1%; /* Pew pew */
+}
+
+
+  .floatright {}
+  .floatleft {}
+  .center-middle {}
+  
+  .ten {}
+  .twenty {}
+  .thirty {}
+  .forty {}
+  .fifty {}
+  .sixty {}
+  .seventy {}
+  .eighty {}
+  
+  .radius {}
+  .circle {}
+  .boxshadow {}
+  .tshadow {} 
+  .gradient {}
+  .shape {}
+
+.circle {
+  border: 1px solid blue;
+  border-radius: 50%;
+  padding: 5px; /* Adjust as needed */
+  display: inline-block; /* Keep the flow inline */
+  margin: 2px; /* To prevent the circle from sticking to other letters */
+}
+
+  
+  @keyframes App-logo {}
+  
+  /* ===== TABLET  media query overrides mobile styles ===== */
+  @media all and (min-width: 600px) {}
+  
+  /* ===== DESKTOP  media query overrides mobile and tablet styles ===== */
+  @media all and (min-width: 1080px) {}
+  
+  /* ===== PRINT  media query overrides previous styles =====  */
+  @media print {}
+  
